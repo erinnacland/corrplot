@@ -30,7 +30,8 @@ plot(0, xlim = c(-0.1, 1), ylim = c(0, 1), type = 'n')
 
 col = c('RdBu', 'BrBG', 'PiYG', 'PRGn', 'PuOr', 'RdYlBu')
 
-for(i in 1:length(col)) {
+for(i in 1:length(col))
+{
   colorlegend(COL2(col[i]), -10:10/10, align = 'l', cex = 0.8, xlim = c(0, 1),
               ylim = c(i/length(col)-0.1, i/length(col)), vertical = FALSE)
   text(-0.01, i/length(col)-0.02, col[i], adj = 0.5, pos = 2, cex = 0.8)
@@ -45,7 +46,8 @@ plot(0, xlim = c(-0.1, 1), ylim = c(0, 1), type = 'n')
 col = c('Oranges', 'Purples', 'Reds', 'Blues', 'Greens', 'Greys', 'OrRd',
         'YlOrRd', 'YlOrBr', 'YlGn')
 
-for(i in 1:length(col)) {
+for(i in 1:length(col))
+{
   colorlegend(COL1(col[i]), 0:10, align = 'l', cex = 0.8, xlim = c(0, 1),
               ylim = c(i/length(col)-0.1, i/length(col)), vertical = FALSE)
   text(-0.01, i/length(col)-0.02, col[i], adj = 0.5, pos = 2)

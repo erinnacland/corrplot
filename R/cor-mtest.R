@@ -18,25 +18,31 @@
 #'
 #' @keywords p-value confidence significance
 #' @export
-cor.mtest = function(mat, ...) {
+cor.mtest = function(mat, ...)
+{
   mat = as.matrix(mat)
   n = ncol(mat)
   p.mat = lowCI.mat = uppCI.mat = matrix(NA, n, n)
   diag(p.mat) = 0
   diag(lowCI.mat) = diag(uppCI.mat) = 1
-  for (i in 1:(n - 1)) {
-    for (j in (i + 1):n) {
+
+  for (i in 1:(n - 1))
+  {
+    for (j in (i + 1):n)
+    {
 
       tmp = cor.test(x = mat[, i], y = mat[, j], ...)
       p.mat[i, j] = p.mat[j, i] = tmp$p.value
 
       # only 'pearson' method provides confidence intervals
-      if (!is.null(tmp$conf.int)) {
+      if (!is.null(tmp$conf.int))
+      {
         lowCI.mat[i, j] = lowCI.mat[j, i] = tmp$conf.int[1]
         uppCI.mat[i, j] = uppCI.mat[j, i] = tmp$conf.int[2]
       }
     }
   }
+
 
   colnames(p.mat) = rownames(p.mat) = colnames(mat)
   colnames(lowCI.mat) = rownames(lowCI.mat) = colnames(mat)

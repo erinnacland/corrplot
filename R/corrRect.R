@@ -35,11 +35,13 @@ corrRect = function(corrRes = NULL, index = NULL, name = NULL, namesMat = NULL,
 {
 
   if((as.integer(!is.null(index)) + as.integer(!is.null(name)) +
-      as.integer(!is.null(namesMat))) > 1) {
+      as.integer(!is.null(namesMat))) > 1)
+  {
     stop('You should just input one of index, name and namesMat!')
   }
 
-  if(is.null(corrRes)|!is.list(corrRes)) {
+  if(is.null(corrRes)|!is.list(corrRes))
+  {
     stop('List \'corrRes\' must be inputted!')
   }
 
@@ -50,14 +52,17 @@ corrRect = function(corrRes = NULL, index = NULL, name = NULL, namesMat = NULL,
   cName = colnames(corr)
   rName = rownames(corr)
 
-  if(!is.null(name)) {
+  if(!is.null(name))
+  {
 
-    if(any(cName != rName)) {
+    if(any(cName != rName))
+    {
       stop('colnames and rownames must be same when index or name is inputted!')
     }
 
 
-    if(!all(name %in% cName)) {
+    if(!all(name %in% cName))
+    {
       stop('Non-existent name found!')
     }
 
@@ -66,9 +71,11 @@ corrRect = function(corrRes = NULL, index = NULL, name = NULL, namesMat = NULL,
 
 
 
-  if(!is.null(index)) {
+  if(!is.null(index))
+  {
 
-    if(any(cName != rName)) {
+    if(any(cName != rName))
+    {
       stop('colnames and rownames must be same when index or name is inputted!')
     }
 
@@ -85,12 +92,14 @@ corrRect = function(corrRes = NULL, index = NULL, name = NULL, namesMat = NULL,
     St[, 2] = abs(St[, 2] - nrow(corr) - 1)
     St[, 4] = abs(St[, 4] - nrow(corr) - 1)
 
-    if(type=='upper') {
+    if(type=='upper')
+    {
       i = which((St[, 1] - St[, 2]) > -0.1 & (St[, 3] - St[, 4]) > -0.1)
       S = S[i, ]
     }
 
-    if(type=='lower') {
+    if(type=='lower')
+    {
       i = which((St[, 2] - St[, 1]) > -0.1 & (St[, 4] - St[, 3]) > -0.1)
       S = S[i, ]
     }
@@ -98,9 +107,12 @@ corrRect = function(corrRes = NULL, index = NULL, name = NULL, namesMat = NULL,
     segments(S[, 1], S[, 2], S[, 3], S[, 4], col = col, lwd = lwd, ...)
   }
 
-  if(!is.null(namesMat)) {
 
-    if(is.vector(namesMat)) {
+  if(!is.null(namesMat))
+  {
+
+    if(is.vector(namesMat))
+    {
       namesMat = matrix(namesMat, ncol = 4, nrow = 1)
     }
 
@@ -123,12 +135,15 @@ corrRect = function(corrRes = NULL, index = NULL, name = NULL, namesMat = NULL,
 
 
 #' @noRd
-getCharXY = function(x, dat) {
+getCharXY = function(x, dat)
+{
 
   res = apply(x, 1, function(n, d=dat) d[d[, 1]==n[1]&d[, 2]==n[2], 3:4])
 
   f = which(unlist(lapply(res, nrow))==0)
-  if(length(f) > 0) {
+
+  if(length(f) > 0)
+  {
     error  = paste(toString(unique(x[f, ])), 'paired X-Y names were not found!')
     stop(error)
   }

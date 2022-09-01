@@ -23,9 +23,11 @@ knitr::opts_chunk$set(
   out.width = '600px',
   dev = 'png')
 
-get_os = function() {
+get_os = function() 
+{
   sysinf = Sys.info()
-  if (!is.null(sysinf)) {
+  if (!is.null(sysinf)) 
+  {
     os = sysinf['sysname']
     if (os == 'Darwin')
       os = 'osx'
@@ -38,7 +40,8 @@ get_os = function() {
   }
   tolower(os)
 }
-if(get_os() =='windows' & capabilities('cairo') | all(capabilities(c('cairo', 'X11')))) {
+if(get_os() =='windows' & capabilities('cairo') | all(capabilities(c('cairo', 'X11')))) 
+{
   knitr::opts_chunk$set(dev.args = list(type='cairo'))
 }
 
@@ -171,7 +174,8 @@ list_seriation_methods('dist')
 data(Zoo)
 Z = cor(Zoo[, -c(15, 17)])
 
-dist2order = function(corr, method, ...) {
+dist2order = function(corr, method, ...) 
+{
   d_corr = as.dist(1 - corr)
   s = seriate(d_corr, method = method, ...)
   i = get_order(s)
@@ -277,7 +281,8 @@ plot.window(xlim = c(-0.2, 1.1), ylim = c(0, 1), xaxs = 'i', yaxs = 'i')
 
 col = c('RdBu', 'BrBG', 'PiYG', 'PRGn', 'PuOr', 'RdYlBu')
 
-for(i in 1:length(col)) {
+for(i in 1:length(col)) 
+{
   colorlegend(COL2(col[i]), -10:10/10, align = 'l', cex = 0.8, xlim = c(0, 1),
               ylim = c(i/length(col)-0.1, i/length(col)), vertical = FALSE)
   text(-0.01, i/length(col)-0.02, col[i], adj = 0.5, pos = 2, cex = 0.8)
@@ -296,7 +301,8 @@ plot.window(xlim = c(-0.2, 1.1), ylim = c(0, 1), xaxs = 'i', yaxs = 'i')
 col = c('Oranges', 'Purples', 'Reds', 'Blues', 'Greens', 'Greys', 'OrRd',
         'YlOrRd', 'YlOrBr', 'YlGn')
 
-for(i in 1:length(col)) {
+for(i in 1:length(col)) 
+{
   colorlegend(COL1(col[i]), 0:10, align = 'l', cex = 0.8, xlim = c(0, 1),
               ylim = c(i/length(col)-0.1, i/length(col)), vertical = FALSE)
   text(-0.01, i/length(col)-0.02, col[i], adj = 0.5, pos = 2)

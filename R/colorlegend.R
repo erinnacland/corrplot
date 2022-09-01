@@ -36,23 +36,28 @@ colorlegend = function(
   ...)
 {
 
-  if (is.null(at) && addlabels) {
+  if (is.null(at) && addlabels)
+  {
     at = seq(0L, 1L, length = length(labels))
   }
 
-  if (any(is.null(lim.segment)) || any(lim.segment == 'auto')) {
+  if (any(is.null(lim.segment)) || any(lim.segment == 'auto'))
+  {
     lim.segment = ratio.colbar + c(0, ratio.colbar * .2)
   }
 
-  if (any(at < 0L) || any(at > 1L)) {
+  if (any(at < 0L) || any(at > 1L))
+  {
     stop('at should be between 0 and 1')
   }
 
-  if (length(lim.segment) != 2) {
+  if (length(lim.segment) != 2)
+  {
     stop('lim.segment should be a vector of length 2')
   }
 
-  if (any(lim.segment < 0L) || any(lim.segment > 1L)) {
+  if (any(lim.segment < 0L) || any(lim.segment > 1L))
+  {
     stop('lim.segment should be between 0 and 1')
   }
 
@@ -63,7 +68,8 @@ colorlegend = function(
   rat1 = ratio.colbar
   rat2 = lim.segment
 
-  if (vertical) {
+  if (vertical)
+  {
 
       at = at * ygap + ylim[1]
       yyy = seq(ylim[1], ylim[2], length = len + 1)
@@ -74,22 +80,27 @@ colorlegend = function(
       rect(xlim[1], ylim[1], xlim[1] + xgap * rat1, ylim[2], border = 'black')
       segments(xlim[1] + xgap * rat2[1], at, xlim[1] + xgap * rat2[2], at)
 
-      if (addlabels) {
+      if (addlabels)
+      {
         pos.xlabel = rep(xlim[1] + xgap * max(rat2, rat1), length(at))
 
-        if(align == 'l') {
+        if(align == 'l')
+        {
           text(pos.xlabel, y = at, labels = labels, pos = 4, ...)
         }
 
-        if(align == 'r') {
+        if(align == 'r')
+        {
           text(xlim[2],    y = at, labels = labels, pos = 2, ...)
         }
 
-        if(align == 'c') {
+        if(align == 'c')
+        {
           text((pos.xlabel + xlim[2]) / 2, y = at, labels = labels, ...)
         }
       }
-  } else {
+  } else
+  {
 
     at = at * xgap + xlim[1]
     xxx = seq(xlim[1], xlim[2], length = len + 1)
@@ -100,7 +111,8 @@ colorlegend = function(
     rect(xlim[1], ylim[2] - rat1 * ygap, xlim[2], ylim[2], border = 'black')
     segments(at, ylim[2] - ygap * rat2[1], at, ylim[2] - ygap * rat2[2])
 
-    if (addlabels) {
+    if (addlabels)
+    {
       pos.ylabel = rep(ylim[2] - ygap * max(rat2, rat1), length(at))
       text(x = at, y = pos.ylabel, labels = labels, pos = 1, ...)
     }

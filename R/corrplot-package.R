@@ -36,7 +36,8 @@
 #' @keywords dimensionality reduction
 NULL
 
-.onAttach <- function(libname, pkgname) {
+.onAttach <- function(libname, pkgname)
+{
   # just to show a startup message
   message <- paste('corrplot', utils::packageVersion('corrplot'), 'loaded')
   packageStartupMessage(message, appendLF = TRUE)

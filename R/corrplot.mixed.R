@@ -46,8 +46,10 @@ corrplot.mixed = function(
 
   # fixes issue #21
   # some methods are not compatible with plotCI='rect'
-  adjust_plotCI = function(plotCI, method) {
-    if (plotCI != 'rect' || method %in% c('circle', 'square')) {
+  adjust_plotCI = function(plotCI, method)
+  {
+    if (plotCI != 'rect' || method %in% c('circle', 'square'))
+    {
       return(plotCI)
     }
     return('n')
@@ -72,7 +74,8 @@ corrplot.mixed = function(
            tl.pos = 'n', cl.pos = 'n', plotCI = plotCI_lower,
            col = lower.col, mar = mar, ...) -> res2
 
-  if (diag == 'n' && tl.pos != 'd') {
+  if (diag == 'n' && tl.pos != 'd')
+  {
     # draw empty rectangles over the diagonal to 'clean' it graphically
     symbols(1:n, n:1, add = TRUE, bg = bg, fg = addgrid.col,
             inches = FALSE, squares = rep(1, n))

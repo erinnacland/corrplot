@@ -18,7 +18,8 @@
 #' @export
 
 COL2 = function(diverging = c('RdBu', 'BrBG', 'PiYG', 'PRGn', 'PuOr', 'RdYlBu'),
-                n = 200) {
+                n = 200)
+{
 
   diverging = match.arg(diverging)
 
@@ -62,7 +63,8 @@ COL2 = function(diverging = c('RdBu', 'BrBG', 'PiYG', 'PRGn', 'PuOr', 'RdYlBu'),
 
 COL1 = function(sequential = c('Oranges', 'Purples', 'Reds', 'Blues', 'Greens',
                                'Greys', 'OrRd', 'YlOrRd', 'YlOrBr', 'YlGn'),
-                n = 200) {
+                n = 200)
+{
 
   sequential = match.arg(sequential)
 
