@@ -130,7 +130,7 @@
 #'   \code{length(col) + 1} when \code{length(col) <=20}; \code{cl.length} is 11
 #'   when \code{length(col) > 20}
 #'
-#' @param cl.cex Numeric, cex of number-label in color-legend,  passed to
+#' @param cl.cex Numeric, text size of number-label in color-legend,  passed to
 #'   \code{\link{colorlegend}}.
 #'
 #' @param cl.ratio Numeric, to justify the width of color-legend, 0.1~0.2 is
@@ -459,6 +459,10 @@ corrplot = function(corr,
   if (order != 'original') {
     ord = corrMatOrder(corr, order = order, hclust.method = hclust.method)
     corr = corr[ord, ord]
+
+    if (!is.null(p.mat)) {
+      p.mat = p.mat[ord, ord]
+    }
   }
 
   ## set up variable names
@@ -885,8 +889,14 @@ corrplot = function(corr,
   ## add numbers
   if (!is.null(addCoef.col) && method != 'number') {
     text(Pos[, 1], Pos[, 2],  col = addCoef.col,
-         labels = del.lead.zero(round((DAT - int) * ifelse(addCoefasPercent, 100, 1) / zoom,
-                        number.digits)),
+         
+ 
+  if (!is.null(addCoef.col) && method != 'number') {
+    text(Pos[, 1], Pos[, 2],  col = addCoef.col,
+         labels = del.lead.zero(format(
+           round((DAT - int) * ifelse(addCoefasPercent, 100, 1) / zoom, number.digits), 
+           nsmall = number.digits
+         )), 
          cex = number.cex, font = number.font)
   }
 
@@ -898,9 +908,6 @@ corrplot = function(corr,
 
 
   if (!is.null(p.mat) && insig != 'n') {
-    if (order != 'original') {
-      p.mat = p.mat[ord, ord]
-    }
 
     if(!is.null(rownames(p.mat)) | !is.null(rownames(p.mat))) {
       if(!all(colnames(p.mat)==colnames(corr)) |

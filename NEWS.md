@@ -1,3 +1,17 @@
+# corrplot 0.95
+
+## Changes
+
+  *  Fix #279: Version 0.94 is not assigning significant ocurrences correctly. (thanks, @brenoliisboa and @david-priest)
+  
+  
+  # corrplot 0.94
+
+## Changes
+
+  *  Fix #275: format correlations with `nsmall = number.digits`. (thanks, @the-mad-statter)
+
+  
 # corrplot 0.93
 
 ## Changes
